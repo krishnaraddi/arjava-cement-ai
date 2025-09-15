@@ -25,59 +25,59 @@ jobs:
     # ─── Kiln Agent ─────────────────────────────────────────────
     - name: Build KilnAgent
       run: |
-        gcloud builds submit agents/kiln_agent \
+        gcloud builds submit agents/kiln_agent
           --tag gcr.io/arjava-jkcement-ai/kiln-agent
 
     - name: Deploy KilnAgent
       run: |
-        gcloud run deploy kiln-agent \
-          --image gcr.io/arjava-jkcement-ai/kiln-agent \
-          --platform managed \
-          --region asia-south1 \
-          --allow-unauthenticated \
+        gcloud run deploy kiln-agent
+          --image gcr.io/arjava-jkcement-ai/kiln-agent
+          --platform managed
+          --region asia-south1
+          --allow-unauthenticated
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
 
     # ─── Cooler Agent ───────────────────────────────────────────
     - name: Build CoolerAgent
       run: |
-        gcloud builds submit agents/cooler_agent \
+        gcloud builds submit agents/cooler_agent 
           --tag gcr.io/arjava-jkcement-ai/cooler-agent
 
     - name: Deploy CoolerAgent
       run: |
-        gcloud run deploy cooler-agent \
-          --image gcr.io/arjava-jkcement-ai/cooler-agent \
-          --platform managed \
-          --region asia-south1 \
-          --allow-unauthenticated \
+        gcloud run deploy cooler-agent 
+          --image gcr.io/arjava-jkcement-ai/cooler-agent 
+          --platform managed 
+          --region asia-south1 
+          --allow-unauthenticated 
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
 
     # ─── Mix Agent ──────────────────────────────────────────────
     - name: Build MixAgent
       run: |
-        gcloud builds submit agents/mix_agent \
+        gcloud builds submit agents/mix_agent 
           --tag gcr.io/arjava-jkcement-ai/mix-agent
 
     - name: Deploy MixAgent
       run: |
-        gcloud run deploy mix-agent \
-          --image gcr.io/arjava-jkcement-ai/mix-agent \
-          --platform managed \
-          --region asia-south1 \
-          --allow-unauthenticated \
+        gcloud run deploy mix-agent 
+          --image gcr.io/arjava-jkcement-ai/mix-agent
+          --platform managed
+          --region asia-south1
+          --allow-unauthenticated
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
 
     # ─── Maintenance Agent ──────────────────────────────────────
     - name: Build MaintenanceAgent
       run: |
-        gcloud builds submit agents/maintenance_agent \
+        gcloud builds submit agents/maintenance_agent
           --tag gcr.io/arjava-jkcement-ai/maintenance-agent
 
     - name: Deploy MaintenanceAgent
       run: |
-        gcloud run deploy maintenance-agent \
-          --image gcr.io/arjava-jkcement-ai/maintenance-agent \
-          --platform managed \
-          --region asia-south1 \
-          --allow-unauthenticated \
+        gcloud run deploy maintenance-agent
+          --image gcr.io/arjava-jkcement-ai/maintenance-agent
+          --platform managed
+          --region asia-south1
+          --allow-unauthenticated
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
