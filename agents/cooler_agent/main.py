@@ -1,12 +1,14 @@
 import os
 import json
 import threading
-
+import sys  
 from flask import Flask, request, jsonify
 from google.cloud import pubsub_v1
 from envs.cooler_env import CoolerEnv
 from dotenv import load_dotenv
 load_dotenv()
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 
 app = Flask(__name__)
 env = CoolerEnv()
