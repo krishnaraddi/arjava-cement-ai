@@ -1,0 +1,5 @@
+flask==2.3.3
+google-cloud-bigquery==3.17.2
+google-cloud-pubsub==2.19.4
+gym==0.26.2
+numpy==1.24.4   
