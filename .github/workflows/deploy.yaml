@@ -25,8 +25,7 @@ jobs:
     # ─── Kiln Agent ─────────────────────────────────────────────
     - name: Build KilnAgent
       run: |
-        gcloud builds submit agents/kiln_agent
-          --tag gcr.io/arjava-jkcement-ai/kiln-agent
+        gcloud builds submit agents/kiln_agent --tag gcr.io/arjava-jkcement-ai/kiln-agent
 
     - name: Deploy KilnAgent
       run: |
@@ -40,8 +39,7 @@ jobs:
     # ─── Cooler Agent ───────────────────────────────────────────
     - name: Build CoolerAgent
       run: |
-        gcloud builds submit agents/cooler_agent 
-          --tag gcr.io/arjava-jkcement-ai/cooler-agent
+        gcloud builds submit agents/cooler_agent --tag gcr.io/arjava-jkcement-ai/cooler-agent
 
     - name: Deploy CoolerAgent
       run: |
@@ -55,12 +53,11 @@ jobs:
     # ─── Mix Agent ──────────────────────────────────────────────
     - name: Build MixAgent
       run: |
-        gcloud builds submit agents/mix_agent 
-          --tag gcr.io/arjava-jkcement-ai/mix-agent
+        gcloud builds submit agents/mix_agent --tag gcr.io/arjava-jkcement-ai/mix-agent
 
     - name: Deploy MixAgent
       run: |
-        gcloud run deploy mix-agent 
+        gcloud run deploy mix-agent
           --image gcr.io/arjava-jkcement-ai/mix-agent
           --platform managed
           --region asia-south1
