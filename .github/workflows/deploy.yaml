@@ -8,6 +8,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      TAG: ${{ github.sha }} 
+      
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -25,42 +28,41 @@ jobs:
     # ─── Kiln Agent ─────────────────────────────────────────────
     - name: Build KilnAgent
       run: |
-        gcloud builds submit agents/kiln_agent --tag gcr.io/arjava-jkcement-ai/kiln-agent
+        gcloud builds submit agents/kiln_agent --tag gcr.io/arjava-jkcement-ai/kiln-agent:${{ env.TAG }}
 
     - name: Deploy KilnAgent
       run: |
+        set -e
+        echo "Deploying KilnAgent..."
         gcloud run deploy kiln-agent
-          --image=gcr.io/arjava-jkcement-ai/kiln-agent
+          --image=gcr.io/arjava-jkcement-ai/kiln-agent:${{ env.TAG }}
           --platform=managed
-          --region=asia-south1
           --allow-unauthenticated
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
 
     # ─── Cooler Agent ───────────────────────────────────────────
     - name: Build CoolerAgent
       run: |
-        gcloud builds submit agents/cooler_agent --tag gcr.io/arjava-jkcement-ai/cooler-agent
+        gcloud builds submit agents/cooler_agent --tag gcr.io/arjava-jkcement-ai/cooler-agent:${{ env.TAG }}
 
     - name: Deploy CoolerAgent
       run: |
         gcloud run deploy cooler-agent 
-          --image=gcr.io/arjava-jkcement-ai/cooler-agent 
+          --image=gcr.io/arjava-jkcement-ai/cooler-agent:${{ env.TAG }}
           --platform=managed 
-          --region=asia-south1 
           --allow-unauthenticated 
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
 
     # ─── Mix Agent ──────────────────────────────────────────────
     - name: Build MixAgent
       run: |
-        gcloud builds submit agents/mix_agent --tag gcr.io/arjava-jkcement-ai/mix-agent
+        gcloud builds submit agents/mix_agent --tag gcr.io/arjava-jkcement-ai/mix-agent:${{ env.TAG }}
 
     - name: Deploy MixAgent
       run: |
         gcloud run deploy mix-agent
-          --image=gcr.io/arjava-jkcement-ai/mix-agent
+          --image=gcr.io/arjava-jkcement-ai/mix-agent:${{ env.TAG }}
           --platform=managed
-          --region=asia-south1
           --allow-unauthenticated
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
 
@@ -68,12 +70,12 @@ jobs:
     - name: Build MaintenanceAgent
       run: |
         gcloud builds submit agents/maintenance_agent
-          --tag gcr.io/arjava-jkcement-ai/maintenance-agent
+          --tag gcr.io/arjava-jkcement-ai/maintenance-agent:${{ env.TAG }}
 
     - name: Deploy MaintenanceAgent
       run: |
         gcloud run deploy maintenance-agent
-          --image=gcr.io/arjava-jkcement-ai/maintenance-agent
+          --image=gcr.io/arjava-jkcement-ai/maintenance-agent:${{ env.TAG }}
           --platform=managed
           --region=asia-south1
           --allow-unauthenticated
