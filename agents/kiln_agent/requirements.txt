@@ -4,3 +4,6 @@ numpy==1.24.4
 # Google Cloud libraries
 google-cloud-pubsub==2.19.4
 google-cloud-monitoring==2.14.1
+grpcio==1.63.0
+grpcio-status==1.63.0
+protobuf==4.25.3

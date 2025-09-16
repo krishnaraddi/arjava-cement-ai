@@ -9,7 +9,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install flask gym numpy  
 # Copy source code
-COPY app.py .
+COPY main.py .
 
 # Expose port 8080 for Cloud Run
 EXPOSE 8080
