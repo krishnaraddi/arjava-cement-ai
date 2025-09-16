@@ -58,4 +58,5 @@ if __name__ == "__main__":
     # 2) Asset monitor thread
     threading.Thread(target=monitor_assets_loop, daemon=True).start()
     # 3) Flask
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
