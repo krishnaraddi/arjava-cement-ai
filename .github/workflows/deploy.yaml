@@ -36,8 +36,7 @@ jobs:
       run: |
         set -e
         echo "Deploying KilnAgent..."
-        gcloud run deploy kiln-agent
-          --image=gcr.io/arjava-jkcement-ai/kiln-agent:$TAG
+        gcloud run deploy kiln-agent --image=gcr.io/arjava-jkcement-ai/kiln-agent:$TAG
           --platform=managed
           --allow-unauthenticated
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
@@ -53,8 +52,7 @@ jobs:
 
     - name: Deploy CoolerAgent
       run: |
-        gcloud run deploy cooler-agent 
-          --image=gcr.io/arjava-jkcement-ai/cooler-agent:$TAG
+        gcloud run deploy cooler-agent --image=gcr.io/arjava-jkcement-ai/cooler-agent:$TAG
           --platform=managed 
           --allow-unauthenticated 
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
@@ -70,8 +68,7 @@ jobs:
 
     - name: Deploy MixAgent
       run: |
-        gcloud run deploy mix-agent
-          --image=gcr.io/arjava-jkcement-ai/mix-agent:$TAG
+        gcloud run deploy mix-agent --image=gcr.io/arjava-jkcement-ai/mix-agent:$TAG
           --platform=managed
           --allow-unauthenticated
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
@@ -81,15 +78,13 @@ jobs:
     # ─── Maintenance Agent ──────────────────────────────────────
     - name: Build MaintenanceAgent
       run: |
-        gcloud builds submit agents/maintenance_agent
-          --tag gcr.io/arjava-jkcement-ai/maintenance-agent:$TAG
+        gcloud builds submit agents/maintenance_agent --tag gcr.io/arjava-jkcement-ai/maintenance-agent:$TAG
       env:
         TAG: ${{ env.TAG }}
 
     - name: Deploy MaintenanceAgent
       run: |
-        gcloud run deploy maintenance-agent
-          --image=gcr.io/arjava-jkcement-ai/maintenance-agent:$TAG  
+        gcloud run deploy maintenance-agent --image=gcr.io/arjava-jkcement-ai/maintenance-agent:$TAG  
           --platform=managed
           --region=asia-south1
           --allow-unauthenticated
