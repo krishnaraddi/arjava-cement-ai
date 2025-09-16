@@ -1,4 +1,4 @@
-name: Build and Deploy All Agents
+name: Build and Deploy All Arjava Agents
 
 on:
   push:
