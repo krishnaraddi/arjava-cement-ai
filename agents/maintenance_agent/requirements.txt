@@ -4,6 +4,4 @@ google-cloud-pubsub==2.19.4
 gym==0.26.2
 numpy==1.24.4   
 google-cloud-monitoring==2.14.1
-grpcio==1.63.0
-grpcio-status==1.63.0
-protobuf==4.25.3
+ 
