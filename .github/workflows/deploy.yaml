@@ -30,9 +30,9 @@ jobs:
     - name: Deploy KilnAgent
       run: |
         gcloud run deploy kiln-agent
-          --image gcr.io/arjava-jkcement-ai/kiln-agent
-          --platform managed
-          --region asia-south1
+          --image=gcr.io/arjava-jkcement-ai/kiln-agent
+          --platform=managed
+          --region=asia-south1
           --allow-unauthenticated
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
 
@@ -44,9 +44,9 @@ jobs:
     - name: Deploy CoolerAgent
       run: |
         gcloud run deploy cooler-agent 
-          --image gcr.io/arjava-jkcement-ai/cooler-agent 
-          --platform managed 
-          --region asia-south1 
+          --image=gcr.io/arjava-jkcement-ai/cooler-agent 
+          --platform=managed 
+          --region=asia-south1 
           --allow-unauthenticated 
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
 
@@ -58,9 +58,9 @@ jobs:
     - name: Deploy MixAgent
       run: |
         gcloud run deploy mix-agent
-          --image gcr.io/arjava-jkcement-ai/mix-agent
-          --platform managed
-          --region asia-south1
+          --image=gcr.io/arjava-jkcement-ai/mix-agent
+          --platform=managed
+          --region=asia-south1
           --allow-unauthenticated
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
 
@@ -73,8 +73,8 @@ jobs:
     - name: Deploy MaintenanceAgent
       run: |
         gcloud run deploy maintenance-agent
-          --image gcr.io/arjava-jkcement-ai/maintenance-agent
-          --platform managed
-          --region asia-south1
+          --image=gcr.io/arjava-jkcement-ai/maintenance-agent
+          --platform=managed
+          --region=asia-south1
           --allow-unauthenticated
           --set-env-vars PROJECT_ID=arjava-jkcement-ai
