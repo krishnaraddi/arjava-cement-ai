@@ -7,8 +7,8 @@ from google.cloud import pubsub_v1
 from envs.cooler_env import CoolerEnv
 from dotenv import load_dotenv
 load_dotenv()
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
-from .envs.cooler_env import CoolerEnv
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from envs.cooler_env import CoolerEnv
 
 app = Flask(__name__)
 env = CoolerEnv()

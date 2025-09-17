@@ -8,8 +8,8 @@ from google.cloud import pubsub_v1, bigquery
 import sys
 from dotenv import load_dotenv
 load_dotenv()
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
-
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+#from envs.multi_env import MaintenanceEnv 
 app = Flask(__name__)
 
 PROJECT = os.getenv["PROJECT_ID"]
