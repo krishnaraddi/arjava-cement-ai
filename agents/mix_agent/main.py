@@ -7,13 +7,13 @@ from google.cloud import pubsub_v1
 from envs.mix_env import MixEnv
 from dotenv import load_dotenv
 load_dotenv()
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
-from .envs.mix_env import MixEnv
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from envs.mix_env import MixEnv
 
 app = Flask(__name__)
 env = MixEnv()
 
-PROJECT = os.getenv["PROJECT_ID"]
+PROJECT = os.getenv("PROJECT_ID")
 
 # Pub/Sub names
 PUB_TOPIC        = f"projects/{PROJECT}/topics/mix-to-kiln-chemistry"  

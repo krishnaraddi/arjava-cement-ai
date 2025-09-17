@@ -13,7 +13,7 @@ from envs.cooler_env import CoolerEnv
 app = Flask(__name__)
 env = CoolerEnv()
 
-PROJECT = os.getenv["PROJECT_ID"]
+PROJECT = os.getenv("PROJECT_ID")
 
 # Pub/Sub names (create these in Cloud Console or via gcloud)
 PUB_TOPIC        = f"projects/{PROJECT}/topics/cooler-to-kiln-feedback"
