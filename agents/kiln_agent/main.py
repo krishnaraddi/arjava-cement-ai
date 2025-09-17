@@ -9,8 +9,8 @@ from google.cloud import pubsub_v1
 import sys
 from dotenv import load_dotenv
 load_dotenv()
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
-from .envs.kiln_env import KilnEnv
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from envs.kiln_env import KilnEnv
 
 
 app = Flask(__name__)
