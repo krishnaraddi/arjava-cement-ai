@@ -8,6 +8,7 @@ from envs.mix_env import MixEnv
 from dotenv import load_dotenv
 load_dotenv()
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
+from .envs.mix_env import MixEnv
 
 app = Flask(__name__)
 env = MixEnv()
