@@ -1,4 +1,4 @@
-name: Build and Deploy All Arjava Agents
+name: Build and Deploy All Aarjava Agents
 
 on:
   push:
@@ -9,8 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      TAG: ${{ github.sha }} 
-      
+      TAG: ${{ github.sha }}
+      PROJECT_ID: arjava-jkcement-ai
+      REGION: asia-south1
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -22,72 +24,66 @@ jobs:
 
     - name: Set gcloud project and region
       run: |
-        gcloud config set project arjava-jkcement-ai
-        gcloud config set run/region asia-south1
+        gcloud config set project $PROJECT_ID
+        gcloud config set run/region $REGION
+        gcloud config set run/platform managed
 
     # ─── Kiln Agent ─────────────────────────────────────────────
     - name: Build KilnAgent
       run: |
-        gcloud builds submit agents/kiln_agent --tag gcr.io/arjava-jkcement-ai/kiln-agent:$TAG
-      env:
-        TAG: ${{ env.TAG }}
+        gcloud builds submit agents/kiln_agent \
+          --tag gcr.io/$PROJECT_ID/kiln-agent:$TAG
 
     - name: Deploy KilnAgent
       run: |
-        set -e
         echo "Deploying KilnAgent..."
-        gcloud run deploy kiln-agent --image=gcr.io/arjava-jkcement-ai/kiln-agent:$TAG
-          --platform=managed
-          --allow-unauthenticated
-          --set-env-vars PROJECT_ID=arjava-jkcement-ai
-      env:  
-        TAG: ${{ env.TAG }} 
+        gcloud run deploy kiln-agent \
+          --image=gcr.io/$PROJECT_ID/kiln-agent:$TAG \
+          --region=$REGION \
+          --allow-unauthenticated \
+          --set-env-vars PROJECT_ID=$PROJECT_ID
 
     # ─── Cooler Agent ───────────────────────────────────────────
     - name: Build CoolerAgent
       run: |
-        gcloud builds submit agents/cooler_agent --tag gcr.io/arjava-jkcement-ai/cooler-agent:$TAG
-      env:
-        TAG: ${{ env.TAG }}
+        gcloud builds submit agents/cooler_agent \
+          --tag gcr.io/$PROJECT_ID/cooler-agent:$TAG
 
     - name: Deploy CoolerAgent
       run: |
-        gcloud run deploy cooler-agent --image=gcr.io/arjava-jkcement-ai/cooler-agent:$TAG
-          --platform=managed 
-          --allow-unauthenticated 
-          --set-env-vars PROJECT_ID=arjava-jkcement-ai
-      env:
-        TAG: ${{ env.TAG }}
+        echo "Deploying CoolerAgent..."
+        gcloud run deploy cooler-agent \
+          --image=gcr.io/$PROJECT_ID/cooler-agent:$TAG \
+          --region=$REGION \
+          --allow-unauthenticated \
+          --set-env-vars PROJECT_ID=$PROJECT_ID
 
     # ─── Mix Agent ──────────────────────────────────────────────
     - name: Build MixAgent
       run: |
-        gcloud builds submit agents/mix_agent --tag gcr.io/arjava-jkcement-ai/mix-agent:$TAG
-      env:
-        TAG: ${{ env.TAG }}
+        gcloud builds submit agents/mix_agent \
+          --tag gcr.io/$PROJECT_ID/mix-agent:$TAG
 
     - name: Deploy MixAgent
       run: |
-        gcloud run deploy mix-agent --image=gcr.io/arjava-jkcement-ai/mix-agent:$TAG
-          --platform=managed
-          --allow-unauthenticated
-          --set-env-vars PROJECT_ID=arjava-jkcement-ai
-      env:
-        TAG: ${{ env.TAG }}
+        echo "Deploying MixAgent..."
+        gcloud run deploy mix-agent \
+          --image=gcr.io/$PROJECT_ID/mix-agent:$TAG \
+          --region=$REGION \
+          --allow-unauthenticated \
+          --set-env-vars PROJECT_ID=$PROJECT_ID
 
     # ─── Maintenance Agent ──────────────────────────────────────
     - name: Build MaintenanceAgent
       run: |
-        gcloud builds submit agents/maintenance_agent --tag gcr.io/arjava-jkcement-ai/maintenance-agent:$TAG
-      env:
-        TAG: ${{ env.TAG }}
+        gcloud builds submit agents/maintenance_agent \
+          --tag gcr.io/$PROJECT_ID/maintenance-agent:$TAG
 
     - name: Deploy MaintenanceAgent
       run: |
-        gcloud run deploy maintenance-agent --image=gcr.io/arjava-jkcement-ai/maintenance-agent:$TAG  
-          --platform=managed
-          --region=asia-south1
-          --allow-unauthenticated
-          --set-env-vars PROJECT_ID=arjava-jkcement-ai
-      env:
-        TAG: ${{ env.TAG }}
+        echo "Deploying MaintenanceAgent..."
+        gcloud run deploy maintenance-agent \
+          --image=gcr.io/$PROJECT_ID/maintenance-agent:$TAG \
+          --region=$REGION \
+          --allow-unauthenticated \
+          --set-env-vars PROJECT_ID=$PROJECT_ID
